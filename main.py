@@ -12,8 +12,10 @@ XmlString= XmlString.replace("&","&amp;")
 XmlString= XmlString.replace('<?xml version="1.0" encoding="utf-8"?>',"")
 
 #se convierte a objeto XML
-Xml = xmltodict.parse(XmlString)
-JsonString =str( Xml["SAPGW_ERROR_LOG"]["item"]["REQUEST_DATA"]["HTTP_BODY"]) #Se extra el Json del Xml
+try:
+    Xml = xmltodict.parse(XmlString)
+    JsonString =str( Xml["SAPGW_ERROR_LOG"]["item"]["REQUEST_DATA"]["HTTP_BODY"]) #Se extra el Json del Xml
+except: raise TypeError("Error al parsear el Xml")
 
 #se deshace el cambio en del caracter invalido y se crea el objeto json
 JsonString = JsonString.replace("&amp;","&")
