@@ -16,12 +16,12 @@ from PyQt5.QtWidgets import QMessageBox
 class Ui_MainWindow( QObject ):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(503, 453)
+        MainWindow.setFixedSize(503, 195)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
-        self.debugTextBrowser = QtWidgets.QTextBrowser(self.centralwidget)
-        self.debugTextBrowser.setGeometry(QtCore.QRect(20, 200, 461, 211))
-        self.debugTextBrowser.setObjectName("debugTextBrowser")
+#        self.debugTextBrowser = QtWidgets.QTextBrowser(self.centralwidget)
+#        self.debugTextBrowser.setGeometry(QtCore.QRect(20, 200, 461, 211))
+#        self.debugTextBrowser.setObjectName("debugTextBrowser")
         self.frame = QtWidgets.QFrame(self.centralwidget)
         self.frame.setGeometry(QtCore.QRect(20, 10, 461, 171))
         self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
@@ -39,12 +39,18 @@ class Ui_MainWindow( QObject ):
         self.horizontalLayout.addWidget(self.label)
         self.lineEdit = QtWidgets.QLineEdit(self.frame)
         self.lineEdit.setObjectName("lineEdit")
+#hacer que no se pueda modificar la caja de la ruta        
+        self.lineEdit.setEnabled(False)
+        
         self.horizontalLayout.addWidget(self.lineEdit)
         self.pushButton = QtWidgets.QPushButton(self.frame)
         self.pushButton.setObjectName("pushButton")
         self.horizontalLayout.addWidget(self.pushButton)
         self.gridLayout.addLayout(self.horizontalLayout, 0, 0, 1, 2)
         self.textEdit = QtWidgets.QTextEdit(self.frame)
+#hacer que no se pueda editar la caja del json        
+        self.textEdit.setTextInteractionFlags (QtCore.Qt.NoTextInteraction)    
+
         self.textEdit.setObjectName("textEdit")
         self.gridLayout.addWidget(self.textEdit, 1, 0, 1, 1)
         self.pushButton_2 = QtWidgets.QPushButton(self.frame)
@@ -58,6 +64,10 @@ class Ui_MainWindow( QObject ):
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
+#set icono
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap("xml.png"), QtGui.QIcon.Selected, QtGui.QIcon.On)
+        MainWindow.setWindowIcon(icon)
 
         self.retranslateUi(MainWindow)
         self.pushButton.clicked.connect( self.browseSlot)

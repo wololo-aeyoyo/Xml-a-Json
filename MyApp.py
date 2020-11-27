@@ -35,7 +35,8 @@ class MainWindowUIClass( Ui_MainWindow ):
         '''Print the message in the text edit at the bottom of the
         horizontal splitter.
         '''
-        self.debugTextBrowser.append( msg )
+    #    self.debugTextBrowser.append( msg )
+        pass
 
     def refreshAll( self ):
         '''
@@ -67,15 +68,17 @@ class MainWindowUIClass( Ui_MainWindow ):
             ret = m.exec_()
             self.lineEdit.setText( "" )
             self.refreshAll()
-            self.debugPrint( "Invalid file specified: " + fileName  )
+     #       self.debugPrint( "Invalid file specified: " + fileName  )
 
     # slot
     def writeDocSlot( self ):
         ''' Called when the user presses the Write-Doc button.
         '''
-        aux = self.model.writeDoc( self.textEdit.toPlainText() )
+        #se activa cuando oprimes el boton de save y guarda el json 
+        #ademas crea las ventanas de pop up
+        aux = self.model.writeDoc( self.textEdit.toPlainText(),self.lineEdit.text() )
         self.show_popup(aux)
-        self.debugPrint( "WriteDoc button pressed!" )
+    #    self.debugPrint( "WriteDoc button pressed!" )
         
     # slot
     def browseSlot( self ):
@@ -91,7 +94,7 @@ class MainWindowUIClass( Ui_MainWindow ):
                         "Xml Files (*.xml)",
                         options=options)
         if fileName:
-            self.debugPrint( "setting file name: " + fileName )
+   #         self.debugPrint( "setting file name: " + fileName )
             self.model.setFileName( fileName )
             self.refreshAll()
 

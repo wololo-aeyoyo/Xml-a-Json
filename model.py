@@ -30,9 +30,7 @@ class Model:
 
     def setFileName( self, fileName ):
         '''
-        sets the member fileName to the value of the argument
-        if the file exists.  Otherwise resets both the filename
-        and file contents members.
+        Se encarga de actualizar el campo del json y ademas de parcearlo
         '''
         if self.isValid( fileName ):
             self.fileName = fileName
@@ -63,12 +61,12 @@ class Model:
         '''
         return self.fileContents
     
-    def writeDoc( self, text ):
+    def writeDoc( self, text,rutaCuadro ):
         '''
-        Writes the string that is passed as argument to a
-        a text file with name equal to the name of the file
-        that was read, plus the suffix ".bak"
+        checkea si el xml era valido y luego manda a ecribir en disco el jonson
+        ademas manda el pop up respectivo
         '''
+        print(rutaCuadro)
         if self.isValid( self.fileName ):
             if self.Json[0] != "":
                 with open("JsonSap.json","w",encoding="utf-8") as file:
