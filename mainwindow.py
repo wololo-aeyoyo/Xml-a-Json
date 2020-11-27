@@ -77,7 +77,7 @@ class Ui_MainWindow( QObject ):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "Json Extractor Sap"))
         self.label.setText(_translate("MainWindow", "File Name"))
         self.pushButton.setText(_translate("MainWindow", "Browse"))
         self.pushButton_2.setText(_translate("MainWindow", "Save"))
