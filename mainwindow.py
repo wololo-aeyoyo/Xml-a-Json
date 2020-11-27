@@ -10,6 +10,7 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import QObject, pyqtSlot
+from PyQt5.QtWidgets import QMessageBox
 
 
 class Ui_MainWindow( QObject ):
@@ -70,7 +71,28 @@ class Ui_MainWindow( QObject ):
         self.label.setText(_translate("MainWindow", "File Name"))
         self.pushButton.setText(_translate("MainWindow", "Browse"))
         self.pushButton_2.setText(_translate("MainWindow", "Save"))
+        
+    def show_popup(self,StatusXml):
+        msg = QMessageBox()
+        if StatusXml == False:
+            msg.setWindowTitle("Error")
+            msg.setText("The Xml is Invalid!")
+            msg.setIcon(QMessageBox.Critical)
+        elif StatusXml == True:
+            msg.setWindowTitle("Done!")
+            msg.setText("The Xml Has been saved on the current directory")
+            msg.setIcon(QMessageBox.Information)
+        else: 
+            msg.setWindowTitle("No Xml has been Loaded!")
+            msg.setText("you must select a Xml file!")
+            msg.setIcon(QMessageBox.Critical)
+        msg.setStandardButtons(QMessageBox.Ok)
+        msg.buttonClicked.connect(self.popup_button)
+        x = msg.exec_()
+        
 
+    def popup_button(self, i):
+        print(i.text())
     @pyqtSlot( )
     def returnPressedSlot( self ):
         pass

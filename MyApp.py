@@ -73,7 +73,8 @@ class MainWindowUIClass( Ui_MainWindow ):
     def writeDocSlot( self ):
         ''' Called when the user presses the Write-Doc button.
         '''
-        self.model.writeDoc( self.textEdit.toPlainText() )
+        aux = self.model.writeDoc( self.textEdit.toPlainText() )
+        self.show_popup(aux)
         self.debugPrint( "WriteDoc button pressed!" )
         
     # slot
@@ -85,9 +86,9 @@ class MainWindowUIClass( Ui_MainWindow ):
         options |= QtWidgets.QFileDialog.DontUseNativeDialog
         fileName, _ = QtWidgets.QFileDialog.getOpenFileName(
                         None,
-                        "QFileDialog.getOpenFileName()",
+                        "Open Xml Archive",
                         "",
-                        "All Files (*);;Python Files (*.py)",
+                        "Xml Files (*.xml)",
                         options=options)
         if fileName:
             self.debugPrint( "setting file name: " + fileName )

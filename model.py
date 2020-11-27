@@ -73,6 +73,8 @@ class Model:
             if self.Json[0] != "":
                 with open("JsonSap.json","w",encoding="utf-8") as file:
                     json.dump(self.Json[1],file,indent=4)
+                return True
+            else: return False
             """
             with open(self.fileName,"r",encoding="utf-8") as archivo:
                 XmlString=archivo.read()
